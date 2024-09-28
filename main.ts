@@ -1,6 +1,7 @@
 import { Order } from './order';
 import { MaxHeap } from './maxHeap';
 import { MinHeap } from './minHeap';
+import { OrderMatcher } from './matching';
 
 const buyOrders = new MaxHeap(10);
 const sellOrders = new MinHeap(10);
@@ -14,8 +15,6 @@ sellOrders.insert(new Order('CompanyA', 100, 45, false));
 sellOrders.insert(new Order('CompanyA', 50, 40, false));
 
 // Mejor orden de compra y venta
-const bestBuyOrder = buyOrders.getMax();
-const bestSellOrder = sellOrders.getMin();
+const matcher = new OrderMatcher(buyOrders, sellOrders);
 
-console.log('Best Buy Order:', bestBuyOrder);
-console.log('Best Sell Order:', bestSellOrder);
+matcher.matchOrders();
