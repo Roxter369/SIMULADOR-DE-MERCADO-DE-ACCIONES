@@ -25,21 +25,18 @@ export class OrderMatcher {
 
                 console.log(`Realizar transacciones de ${quantityToTransact} acciones de ${bestBuy.company} a $${bestSell.price}`);
 
-                // Registrar la transacción en el historial
                 const transaction: Transaction = {
                     company: bestBuy.company,
                     quantity: quantityToTransact,
                     price: bestSell.price,
-                    buyer: 'Comprador', // Puedes mejorar esto agregando más detalles sobre el comprador
-                    seller: 'Vendedor' // y el vendedor si fuese necesario
+                    buyer: 'Comprador',
+                    seller: 'Vendedor'
                 };
                 this.transactionHistory.addTransaction(transaction);
 
-                // Actualizar cantidades restantes en las órdenes
                 bestBuy.quantity -= quantityToTransact;
                 bestSell.quantity -= quantityToTransact;
 
-                // Si alguna orden queda con cantidad 0, la eliminamos del heap
                 if (bestBuy.quantity === 0) {
                     this.buyOrders.extractMax();
                 }
@@ -47,7 +44,6 @@ export class OrderMatcher {
                     this.sellOrders.extractMin();
                 }
             } else {
-                // No se puede hacer más emparejamientos
                 break;
             }
         }

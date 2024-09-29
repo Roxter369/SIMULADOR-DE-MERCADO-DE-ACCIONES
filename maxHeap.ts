@@ -21,12 +21,16 @@ export class MaxHeap {
     }
 
     public insert(order: Order): void {
-        if (this.n === (this.heap.length - 1)) {
-            this.resize(2 * this.heap.length);
+        try {
+            if (this.n === (this.heap.length - 1)) {
+                this.resize(2 * this.heap.length);
+            }
+            this.n++;
+            this.heap[this.n] = order;
+            this.swapUp(this.n);
+        } catch (error) {
+            console.error('Error al insertar el pedido:', error.message);
         }
-        this.n++;
-        this.heap[this.n] = order;
-        this.swapUp(this.n);
     }
 
     public extractMax(): Order | null {

@@ -9,12 +9,21 @@ const sellOrders = new MinHeap(10);
 const transactionHistory = new TransactionHistory();
 
 // Órdenes de compra
-buyOrders.insert(new Order('CompanyA', 100, 50, true));
-buyOrders.insert(new Order('CompanyA', 50, 55, true));
+try {
+    buyOrders.insert(new Order('CompanyA', 100, 50, true));
+    buyOrders.insert(new Order('', 50, 55, true));
+    buyOrders.insert(new Order('CompanyA', -10, 55, true));
+} catch (error) {
+    console.error(error.message);
+}
 
 // Órdenes de venta
-sellOrders.insert(new Order('CompanyA', 100, 45, false));
-sellOrders.insert(new Order('CompanyA', 50, 40, false));
+try {
+    sellOrders.insert(new Order('CompanyA', 100, 45, false));
+    sellOrders.insert(new Order('CompanyA', 50, -10, false));
+} catch (error) {
+    console.error(error.message);
+}
 
 // Realizar el emparejamiento
 const matcher = new OrderMatcher(buyOrders, sellOrders, transactionHistory);
