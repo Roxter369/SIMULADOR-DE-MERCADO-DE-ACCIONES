@@ -1,4 +1,3 @@
-// matching.ts (actualización)
 import { MaxHeap } from './maxHeap';
 import { MinHeap } from './minHeap';
 import { Order } from './order';
@@ -23,7 +22,7 @@ export class OrderMatcher {
             if (bestBuy.price >= bestSell.price) {
                 const quantityToTransact = Math.min(bestBuy.quantity, bestSell.quantity);
 
-                console.log(`Realizar transacciones de ${quantityToTransact} acciones de ${bestBuy.company} a $${bestSell.price}`);
+                console.log(`Transacciones recibidas de ${quantityToTransact} acciones de ${bestBuy.company} a $${bestSell.price}`);
 
                 const transaction: Transaction = {
                     company: bestBuy.company,

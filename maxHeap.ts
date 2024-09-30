@@ -1,4 +1,5 @@
-import { Order } from "./order";
+import { Order } from './order';
+
 export class MaxHeap {
     private heap: Order[];
     private n: number;
@@ -6,6 +7,23 @@ export class MaxHeap {
     constructor(size: number) {
         this.heap = new Array(size + 1);
         this.n = 0;
+    }
+
+    public insert(order: Order): void {
+        try {
+            if (this.n === (this.heap.length - 1)) {
+                this.resize(2 * this.heap.length);
+            }
+            this.n++;
+            this.heap[this.n] = order;
+            this.swapUp(this.n);
+        } catch (error) {
+            if (error instanceof Error) {
+                console.error('No se pudo insertar el pedido:', error.message);
+            } else {
+                console.error('Se produjo un error desconocido durante la inserción del pedido.');
+            }
+        }
     }
 
     public getMax(): Order {
@@ -18,19 +36,6 @@ export class MaxHeap {
 
     public getQuantity(): number {
         return this.n;
-    }
-
-    public insert(order: Order): void {
-        try {
-            if (this.n === (this.heap.length - 1)) {
-                this.resize(2 * this.heap.length);
-            }
-            this.n++;
-            this.heap[this.n] = order;
-            this.swapUp(this.n);
-        } catch (error) {
-            console.error('Error al insertar el pedido:', error.message);
-        }
     }
 
     public extractMax(): Order | null {

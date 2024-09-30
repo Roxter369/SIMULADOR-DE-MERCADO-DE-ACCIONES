@@ -21,12 +21,20 @@ export class MinHeap {
     }
 
     public insert(order: Order): void {
-        if (this.n === (this.heap.length - 1)) {
-            this.resize(2 * this.heap.length);
+        try {
+            if (this.n === (this.heap.length - 1)) {
+                this.resize(2 * this.heap.length);
+            }
+            this.n++;
+            this.heap[this.n] = order;
+            this.swapUp(this.n);
+        } catch (error) {
+            if (error instanceof Error) {
+                console.error('No se pudo insertar el pedido:', error.message);
+            } else {
+                console.error('Se produjo un error desconocido durante la inserción del pedido.');
+            }
         }
-        this.n++;
-        this.heap[this.n] = order;
-        this.swapUp(this.n);
     }
 
     public extractMin(): Order | null {
