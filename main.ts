@@ -8,13 +8,15 @@ const buyOrders = new MaxHeap(10);
 const sellOrders = new MinHeap(10);
 const transactionHistory = new TransactionHistory();
 
-// Órdenes de compra con identificadores de compradores
+// Órdenes de compra de compradores
 buyOrders.insert(new Order('CompanyA', 100, 50, true, 'Comprador1'));
 buyOrders.insert(new Order('CompanyA', 50, 55, true, 'Comprador2'));
+buyOrders.insert(new Order('CompanyB', 75, 60, true, 'Comprador3'));
 
-// Órdenes de venta con identificadores de vendedores
+// Órdenes de venta de vendedores
 sellOrders.insert(new Order('CompanyA', 60, 45, false, 'Vendedor1'));
 sellOrders.insert(new Order('CompanyA', 90, 40, false, 'Vendedor2'));
+sellOrders.insert(new Order('CompanyB', 75, 55, false, 'Vendedor3'));
 
 // Realizar el emparejamiento
 const matcher = new OrderMatcher(buyOrders, sellOrders, transactionHistory);
@@ -22,3 +24,6 @@ matcher.matchOrders();
 
 // Historial de transacciones
 transactionHistory.printHistory();
+
+// Filtrar y mostrar solo las transacciones de "CompanyA"
+transactionHistory.printTransactionsByCompany('CompanyA');
