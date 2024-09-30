@@ -1,4 +1,4 @@
-export interface Transaction {
+export interface Transaction { //Se utiliza "interface" porque solo queremos la estructura, no necesitamos incluir implementación de métodos.
     company: string;
     quantity: number;
     price: number;
@@ -59,5 +59,28 @@ export class TransactionHistory {
         if (!found) {
             console.log('No se encontraron transacciones para la compañía: ' + company);
         }
+    }
+
+    public printStatistics(): void {
+        if (this.transactions.length === 0) {
+            console.log('No hay transacciones para calcular estadísticas.');
+            return;
+        }
+
+        let totalQuantity = 0;
+        let totalAmount = 0;
+        const transactionCount = this.transactions.length;
+
+        for (const transaction of this.transactions) {
+            totalQuantity += transaction.quantity;
+            totalAmount += transaction.price * transaction.quantity;
+        }
+
+        const averagePrice = totalAmount / totalQuantity;
+
+        console.log('Estadísticas de transacciones:');
+        console.log('Total de transacciones: ' + transactionCount);
+        console.log('Total de acciones transaccionadas: ' + totalQuantity);
+        console.log('Precio promedio por acción: $' + averagePrice.toFixed(2));
     }
 }
