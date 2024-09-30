@@ -3,8 +3,9 @@ export class Order {
     quantity: number;
     price: number;
     isBuyOrder: boolean;
+    userId: string;
 
-    constructor(company: string, quantity: number, price: number, isBuyOrder: boolean) {
+    constructor(company: string, quantity: number, price: number, isBuyOrder: boolean, userId: string) {
         if (!company || company.trim() === '') {
             throw new Error('El nombre de la empresa no puede estar vacío.');
         }
@@ -19,5 +20,6 @@ export class Order {
         this.quantity = quantity;
         this.price = price;
         this.isBuyOrder = isBuyOrder;
+        this.userId = userId;
     }
 }

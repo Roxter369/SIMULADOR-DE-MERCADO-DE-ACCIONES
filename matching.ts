@@ -28,8 +28,8 @@ export class OrderMatcher {
                     company: bestBuy.company,
                     quantity: quantityToTransact,
                     price: bestSell.price,
-                    buyer: 'Comprador',
-                    seller: 'Vendedor'
+                    buyer: bestBuy.userId,
+                    seller: bestSell.userId
                 };
                 this.transactionHistory.addTransaction(transaction);
 

@@ -29,7 +29,7 @@ export class TransactionHistory {
 
         console.log('Historial de transacciones:');
         for (const transaction of this.transactions) {
-            console.log(`Compañía: ${transaction.company}, Cantidad: ${transaction.quantity}, Precio: $${transaction.price}, Comprador: ${transaction.buyer}, Vendedor: ${transaction.seller}`);
+            console.log('Compañía: ' + transaction.company + ', Cantidad: ' + transaction.quantity + ', Precio: $' + transaction.price + ', Comprador: ' + transaction.buyer + ', Vendedor: ' + transaction.seller);
         }
     }
 }
